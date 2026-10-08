@@ -1,3 +1,4 @@
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+markers = ["docker: 需要正在运行的 Docker 和已构建的测试镜像"]

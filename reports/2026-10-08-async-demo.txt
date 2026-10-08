@@ -1,0 +1,50 @@
+收到请求 /rate-limit，第 1 次
+收到请求 /timeout，第 1 次
+收到请求 /bad-input，第 1 次
+收到请求 /rate-limit，第 2 次
+收到请求 /timeout，第 2 次
+{
+  "jobs": [
+    {
+      "id": "/rate-limit",
+      "status": "succeeded",
+      "result": {
+        "path": "/rate-limit",
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "id": "/timeout",
+      "status": "succeeded",
+      "result": {
+        "path": "/timeout",
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "id": "/bad-input",
+      "status": "failed",
+      "result": null,
+      "error": "HTTPStatusError"
+    }
+  ],
+  "requests": {
+    "/rate-limit": 2,
+    "/timeout": 2,
+    "/bad-input": 1
+  },
+  "retries": [
+    {
+      "attempt": 1,
+      "reason": "429",
+      "delay": 0.01
+    },
+    {
+      "attempt": 1,
+      "reason": "ReadTimeout",
+      "delay": 0.01
+    }
+  ]
+}

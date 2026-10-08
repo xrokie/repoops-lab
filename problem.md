@@ -70,3 +70,14 @@ All tests must pass through one documented command.
 - recovery after the entire executor process crashes.
 
 These items are deferred, not permanently excluded. They will be introduced in later stages only when the project has a concrete need for them.
+
+## 第二阶段：2026-10-06 至 2026-10-07
+
+在第一阶段的任务与状态记录之上，引入异步等待、网络重试和容器执行，解决网络等待拖慢执行、临时错误以及命令卡死的问题。
+
+- `src/async_executor.py`：并发执行异步任务，记录取消和超时，取消整批任务后等待清理。
+- `src/retry_policy.py`：分别设置四种网络超时；限定重试次数；写入请求只有确认服务端支持去重时才允许重试。
+- `src/sandbox_runner.py`：在受 CPU、内存、进程数和时间限制的容器中执行命令，记录日志并删除容器。
+- 测试命令与已知限制见 `README.md`；三天知识讲解见 `notes/2026-10-06-to-08.md`。
+
+这一步仍不包含数据库保存、进程崩溃恢复、自动代码修复、模型训练或强化学习。10 月 8 日的机器人模型评测属于独立学习任务，不用本项目的执行器测试替代它的实际评测结果。

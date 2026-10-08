@@ -1,0 +1,4 @@
+{"run_id": "tests", "status": "succeeded", "exit_code": 0, "stdout": ".........................................                                [100%]\n41 passed, 1 deselected in 0.13s\n", "stderr": "", "error": null, "container_removed": true}
+{"run_id": "exit-error", "status": "failed", "exit_code": 7, "stdout": "", "stderr": "故意失败\n", "error": null, "container_removed": true}
+{"run_id": "hang", "status": "timed_out", "exit_code": 137, "stdout": "", "stderr": "", "error": null, "container_removed": true}
+{"run_id": "oom", "status": "oom", "exit_code": 137, "stdout": "", "stderr": "", "error": null, "container_removed": true}

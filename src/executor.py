@@ -17,6 +17,8 @@ class JobStatus(Enum):
     RUNNING = "running"
     SUCCEEDED = "succeeded"
     FAILED = "failed"
+    CANCELLED = "cancelled"
+    TIMED_OUT = "timed_out"
 
 
 class InvalidTransitionError(RuntimeError):
@@ -39,10 +41,15 @@ class InvalidTransitionError(RuntimeError):
 
 
 ALLOWED_TRANSITIONS: Dict[JobStatus, Set[JobStatus]] = {
-    JobStatus.PENDING: {JobStatus.RUNNING},
-    JobStatus.RUNNING: {JobStatus.SUCCEEDED, JobStatus.FAILED},
+    JobStatus.PENDING: {JobStatus.RUNNING, JobStatus.CANCELLED},
+    JobStatus.RUNNING: {
+        JobStatus.SUCCEEDED, JobStatus.FAILED,
+        JobStatus.CANCELLED, JobStatus.TIMED_OUT,
+    },
     JobStatus.SUCCEEDED: set(),
     JobStatus.FAILED: set(),
+    JobStatus.CANCELLED: set(),
+    JobStatus.TIMED_OUT: set(),
 }
 
 
